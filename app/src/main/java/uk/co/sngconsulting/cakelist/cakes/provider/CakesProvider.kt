@@ -15,6 +15,7 @@ import uk.co.sngconsulting.cakelist.BuildConfig
 import uk.co.sngconsulting.cakelist.cakes.model.data.CakesDatabase
 import uk.co.sngconsulting.cakelist.cakes.model.repository.CakeRepository
 import uk.co.sngconsulting.cakelist.cakes.model.retrofit.CakeListService
+import uk.co.sngconsulting.cakelist.cakes.ui.CakeListViewModelFactory
 
 /**
  * Provider, used for lightweight dependency injection
@@ -24,6 +25,8 @@ object CakesProvider {
     private const val baseUrl = "https://gist.githubusercontent.com"
 
     lateinit var cakeRepository : CakeRepository
+
+    lateinit var cakeListViewModelFactory: CakeListViewModelFactory
 
     fun initialise(context: Context){
 
@@ -47,5 +50,7 @@ object CakesProvider {
         val cakesDatabase = CakesDatabase.getInstance(context.applicationContext)
 
         cakeRepository = CakeRepository(cakeRepositoryHandler, cakeListService, cakesDatabase.cakesDao)
+
+        cakeListViewModelFactory = CakeListViewModelFactory(cakeRepository)
     }
 }
