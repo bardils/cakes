@@ -1,28 +1,26 @@
-package uk.co.sngconsulting.cakelist
+/*
+ * Copyright (c) 2019.  SnG Technologies Ltd
+ */
+
+package uk.co.sngconsulting.cakelist.cakes.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.activity_main.*
-import uk.co.sngconsulting.cakelist.cakes.provider.CakesProvider
+import kotlinx.android.synthetic.main.cakelist_activity.*
+import uk.co.sngconsulting.cakelist.R
 
-class MainActivity : AppCompatActivity() {
+class CakeListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.cakelist_activity)
         setSupportActionBar(toolbar)
-
-        CakesProvider.cakeRepository.loadCakesOrderedByTitle().observe(this, Observer {
-            Log.d("Mmmm", it.toString())
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.cakelist_menu, menu)
         return true
     }
 

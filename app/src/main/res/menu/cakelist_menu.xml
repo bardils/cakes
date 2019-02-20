@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="uk.co.sngconsulting.cakelist.MainActivity">
+      tools:context="uk.co.sngconsulting.cakelist.cakes.ui.CakeListActivity">
     <item android:id="@+id/action_refresh"
           android:title="@string/action_refresh"
           android:orderInCategory="100"
