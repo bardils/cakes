@@ -5,12 +5,13 @@
 package uk.co.sngconsulting.cakelist.cakes.ui
 
 import androidx.lifecycle.Observer
+import uk.co.sngconsulting.cakelist.cakes.model.data.Cake
 
 /**
  * Controller for the [CakeListView].
  * Observes changes to the [CakeListViewModel] and updates the view accordingly
  */
-class CakeListController(cakeListView: CakeListView, cakeListViewModel: CakeListViewModel) {
+class CakeListController(private val cakeListView: CakeListView, cakeListViewModel: CakeListViewModel) : CakeSelectedListener {
 
     init {
         cakeListViewModel.cakes.observe(cakeListView, Observer { cakes ->
@@ -18,4 +19,9 @@ class CakeListController(cakeListView: CakeListView, cakeListViewModel: CakeList
         })
     }
 
+    // CakeSelectedListener
+
+    override fun cakeSelected(cake: Cake) {
+        cakeListView.showCakeDetail(cake)
+    }
 }

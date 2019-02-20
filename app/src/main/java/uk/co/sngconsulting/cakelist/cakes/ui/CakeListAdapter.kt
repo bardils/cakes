@@ -14,7 +14,8 @@ import uk.co.sngconsulting.cakelist.databinding.CakeBinding
 /**
  * Adapter for the Cake List RecyclerView
  */
-class CakeListAdapter : RecyclerView.Adapter<CakeListAdapter.CakeViewHolder>() {
+class CakeListAdapter(private val cakeSelectedListener: CakeSelectedListener) :
+    RecyclerView.Adapter<CakeListAdapter.CakeViewHolder>() {
 
     private var cakes: List<Cake>? = null
 
@@ -66,15 +67,18 @@ class CakeListAdapter : RecyclerView.Adapter<CakeListAdapter.CakeViewHolder>() {
 
     override fun onBindViewHolder(holder: CakeViewHolder, position: Int) {
         checkNotNull(cakes) { "Cakes should not be null when binding view holder" }
-        holder.bind(cakes!![position])
+        holder.bind(cakes!![position], cakeSelectedListener)
     }
 
     /**
      * [RecyclerView.ViewHolder] for a [Cake]
      */
-    class CakeViewHolder(private val cakeBinding: CakeBinding) : RecyclerView.ViewHolder(cakeBinding.root) {
-        fun bind(cake: Cake) {
+    class CakeViewHolder(private val cakeBinding: CakeBinding) :
+        RecyclerView.ViewHolder(cakeBinding.root) {
+
+        fun bind(cake: Cake, cakeSelectedListener: CakeSelectedListener) {
             cakeBinding.cake = cake
+            cakeBinding.cakeSelectedListener = cakeSelectedListener
             cakeBinding.executePendingBindings()
         }
     }

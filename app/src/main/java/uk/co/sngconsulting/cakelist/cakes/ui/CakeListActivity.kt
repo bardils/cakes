@@ -7,6 +7,7 @@ package uk.co.sngconsulting.cakelist.cakes.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
@@ -20,6 +21,7 @@ import uk.co.sngconsulting.cakelist.cakes.provider.CakesProvider
 
 interface CakeListView : LifecycleOwner{
     fun updateCakes(cakes: List<Cake>)
+    fun showCakeDetail(cake: Cake)
 }
 
 class CakeListActivity : AppCompatActivity(), CakeListView {
@@ -34,8 +36,7 @@ class CakeListActivity : AppCompatActivity(), CakeListView {
 
         // TODO: move construction to provider
 
-        cakeListAdapter = CakeListAdapter()
-        cakeListRecyclerView.adapter = cakeListAdapter
+
 
         ContextCompat.getDrawable(this, R.drawable.list_divider)?.let {
             val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
@@ -45,6 +46,10 @@ class CakeListActivity : AppCompatActivity(), CakeListView {
 
         val cakeListViewModel = ViewModelProviders.of(this, CakesProvider.cakeListViewModelFactory).get(CakeListViewModel::class.java)
         cakeListController = CakeListController(this, cakeListViewModel)
+
+        cakeListAdapter = CakeListAdapter(cakeListController)
+        cakeListRecyclerView.adapter = cakeListAdapter
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -60,7 +65,13 @@ class CakeListActivity : AppCompatActivity(), CakeListView {
     }
 
     // CakeListView
+
     override fun updateCakes(cakes: List<Cake>) {
         cakeListAdapter.updateCakes(cakes)
+    }
+
+    override fun showCakeDetail(cake: Cake) {
+        // TODO: make a nicer detail view
+        Toast.makeText(this, cake.desc, Toast.LENGTH_LONG).show()
     }
 }

@@ -14,12 +14,17 @@
                 name="cake"
                 type="uk.co.sngconsulting.cakelist.cakes.model.data.Cake"/>
 
+        <variable
+                name="cakeSelectedListener"
+                type="uk.co.sngconsulting.cakelist.cakes.ui.CakeSelectedListener"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="@{()->cakeSelectedListener.cakeSelected(cake)}">
 
         <ImageView
                 tools:src="@drawable/ic_image_black_24dp"
