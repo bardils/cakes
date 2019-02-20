@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cake List</string>
     <string name="action_refresh">Refresh</string>
+    <string name="cakes_message_unable_to_refresh">Unable to refresh. Please retry later</string>
+    <string name="cakes_message_no_connection">No connection. Please retry later</string>
+    <string name="title_retry">Retry</string>
 </resources>

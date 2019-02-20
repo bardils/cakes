@@ -25,8 +25,15 @@ class CakeListViewModelFactory(private val cakeListRepository: CakeRepository): 
 /**
  * [ViewModel] for the [CakeListView]
  */
-class CakeListViewModel(cakeListRepository: CakeRepository) : ViewModel() {
+class CakeListViewModel(private val cakeListRepository: CakeRepository) : ViewModel() {
 
     val cakes = cakeListRepository.loadCakesOrderedByTitle()
+
+    /**
+     * Wrapper method for the [CakeRepository]
+     */
+    fun refresh(onCompletion: (result: CakeRepository.CakeRepositoryResult) -> Unit){
+        cakeListRepository.refreshCakesFromCakeListService(onCompletion)
+    }
 
 }
