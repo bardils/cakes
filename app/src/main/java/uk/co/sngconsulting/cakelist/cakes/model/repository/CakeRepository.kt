@@ -16,7 +16,7 @@ import java.io.IOException
  * TODO: unit test
  *
  */
-typealias cakeRepositoryCompletionHandler = (result: CakeRepository.CakeRepositoryResult) -> Unit
+typealias CakeRepositoryCompletionHandler = (result: CakeRepository.CakeRepositoryResult) -> Unit
 
 class CakeRepository(
     private val handler: Handler,
@@ -33,7 +33,7 @@ class CakeRepository(
     /**
      * Loads all current [Cake], ordering by the [Cake.title]
      */
-    fun loadCakesOrderedByTitle(onCompletion: cakeRepositoryCompletionHandler? = null): LiveData<List<Cake>> {
+    fun loadCakesOrderedByTitle(onCompletion: CakeRepositoryCompletionHandler? = null): LiveData<List<Cake>> {
         return cakesDao.loadAllCakesOrderedByTitle()
     }
 
@@ -42,7 +42,7 @@ class CakeRepository(
      * Downloads [Cake] from the [CakeListService] storing them in the [CakesDao] if successful.
      * Callers can supply an [onCompletion] function to be informed when the refresh is complete, if required.
      */
-    fun refreshCakesFromCakeListService(onCompletion: cakeRepositoryCompletionHandler? = null) {
+    fun refreshCakesFromCakeListService(onCompletion: CakeRepositoryCompletionHandler? = null) {
         val call = cakeListService.getCakes()
         handler.post {
             val response = try {
