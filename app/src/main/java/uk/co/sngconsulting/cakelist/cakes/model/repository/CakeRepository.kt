@@ -13,7 +13,6 @@ import java.io.IOException
 
 /**
  * A repository for [Cake]
- * TODO: unit test
  *
  */
 typealias CakeRepositoryCompletionHandler = (result: CakeRepository.CakeRepositoryResult) -> Unit
@@ -36,7 +35,6 @@ class CakeRepository(
     fun loadCakesOrderedByTitle(onCompletion: CakeRepositoryCompletionHandler? = null): LiveData<List<Cake>> {
         return cakesDao.loadAllCakesOrderedByTitle()
     }
-
 
     /**
      * Downloads [Cake] from the [CakeListService] storing them in the [CakesDao] if successful.
@@ -63,7 +61,6 @@ class CakeRepository(
                     // TODO: the API doesn't seem to send back any custom errors. Determine if this is the case and act accordingly.
                     onCompletion?.invoke(CakeRepositoryResult.API_ERROR)
             }
-
         }
     }
 
