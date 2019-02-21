@@ -12,6 +12,7 @@ import androidx.room.Query
 
 /**
  * Dao for the [CakesDatabase]
+ * TODO: instrumentation tests
  */
 @Dao
 interface CakesDao {
@@ -23,6 +24,6 @@ interface CakesDao {
 
     // Read
 
-    @Query("SELECT * FROM cakes ORDER BY title DESC")
+    @Query("SELECT * FROM cakes ORDER BY title ASC")
     fun loadAllCakesOrderedByTitle(): LiveData<List<Cake>>
 }
